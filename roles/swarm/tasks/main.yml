@@ -1,0 +1,11 @@
+---
+
+  - name: install ntp
+    include: ntp.yml
+
+# TODO 
+# - leave manager from the swarm
+# - add swarm manager
+# - retrieve swarm token
+# - leave worker from the swarm
+# - add worker to the swarm

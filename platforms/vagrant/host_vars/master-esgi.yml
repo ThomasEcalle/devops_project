@@ -1,0 +1,9 @@
+---
+
+#TODO ansible_user: ???
+ansible_user: ubuntu
+#TODO ansible_ssh_host: ???
+ansible_ssh_host: 192.168.56.210
+zookeeper_interface: ansible_enp0s8.ipv4
+broker_id: 0
+broker_interface: ansible_enp0s8.ipv4
