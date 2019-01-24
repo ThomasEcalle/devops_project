@@ -44,10 +44,10 @@ Vagrant.configure(2) do |config|
       "
   end
 
-  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/me.pub"
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "$HOME/.ssh/me.pub"
   config.vm.provision :shell, :inline =>"
     echo 'Copying public SSH Keys to the VM'
-    cat ~/.ssh/me.pub >> ~/.ssh/authorized_keys
+    cat $HOME/.ssh/me.pub >> $HOME/.ssh/authorized_keys
     chmod -R 600 ~/.ssh/authorized_keys
     echo 'Host 192.168.*.*' >> ~/.ssh/config
     echo 'StrictHostKeyChecking no' >> ~/.ssh/config

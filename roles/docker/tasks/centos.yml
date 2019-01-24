@@ -1,3 +1,27 @@
 ---
 
-# TODO install docker on Centos
+- name: Check if docker is installed
+  command: systemctl status docker
+  register: docker_check
+  become: yes
+  ignore_errors: yes
+
+- name: Download  Docker's installer
+  become: yes
+  get_url:
+    url: https://get.docker.com/
+    dest: /root/install_docker.sh
+    mode: 0700
+  when: docker_check.stderr.find('service could not be found') != -1
+
+- name: Install Docker
+  become: yes
+  shell: /root/install_docker.sh
+  when: docker_check.stderr.find('service could not be found') != -1
+
+- name: Enable docker service
+  become: yes
+  service:
+    name: docker
+    enabled: yes
+    state: started
